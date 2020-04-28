@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+    <style>
+        .border {
+        border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars </h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Find Mars Facts</a></p>
+        </div>
+    </div>
+
+    <!-- Mars News -->
+    <div class="container">
+        <div class='row'>
+            <div class="col-md-12">
+                <h2>Latest Mars News</h2>
+                <br>
+                <h4>{{mission_data.news_title}}</h4>
+                <p>{{mission_data.news_body}}</p>
+            </div>
+        </div>
+        
+        <!-- Featured Mars Image -->
+        <div class='row'>
+            <div class="col-md-7">
+                <h2>Featured Mars Image</h2>
+                <img src="{{mission_data.featured_image}}" height="85%" width= "85%" style="padding-top: 20px;"/>
+            </div>
+
+            <div class="col-md-5" style="padding-top: 20px;">
+                <!--Mars weather-->
+                <div class="border">
+                    <h3 style="padding-left: 10px;">Current Weather On Mars</h3>
+                    <p style="padding-left: 10px;">{{mission_data.mars_weather}}</p>
+                </div>
+                <!--Mars facts-->
+                <div class="row" style="padding-left: 16px;">
+                  <h3>Mars Facts</h3>
+                  {{ mission_data.mars_facts|safe }}
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <h2 class="text-center">Mars Hemispheres</h2>
+            <!--Add images hemispheres here -->
+                {% for hemisphere in mission_data.hemispheres %}
+                    <div class = "col-md-6">
+                        <div class=thumbnail>
+                            <img src="{{hemisphere.img_url}}" alt="hemisphere.img_url">
+                            <div class = "caption">
+                                <h3>{{hemisphere.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+      </div>
+</body>
+</html>
